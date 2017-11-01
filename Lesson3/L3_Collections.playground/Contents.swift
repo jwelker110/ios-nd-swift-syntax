@@ -89,6 +89,8 @@ if let groupOfSasquatches = animalGroupsDict["Sasquatches"] {
 //: ## Sets
 //: Literal syntax
 var cutlery: Set = ["fork", "knife", "spoon"]
+var result = cutlery.insert("spoon")
+print(result)
 var flowers:Set<Character> = ["🌷","🌹","🌸"]
 //: Initializer syntax
 var utensils = Set<String>()
