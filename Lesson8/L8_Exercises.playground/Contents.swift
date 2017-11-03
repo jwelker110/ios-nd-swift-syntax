@@ -78,12 +78,16 @@ var pic = UIImage(named: "frolick.jpg")
 //: Based on what you see in the Friend class,  rewrite what you think would be in the Mover protocol.
 //:
 //: __3b.__ Edit the Friend class so that it adopts the Mover protocol.
-
-class Friend {
+protocol Mover {
+    var willWorkForPizzaAndBeer: Bool { get }
+    func carryCouch() -> String
+    func loadVan(_ : Bool) -> Bool
+}
+class Friend : Mover {
+    var willWorkForPizzaAndBeer: Bool = true
+    
     var reliability: Int
     var likesYou: Bool
-    
-    var willWorkForPizzaAndBeer = true
     
     init (reliability: Int, likesYou: Bool, willWorkForPizzaAndBeer: Bool) {
         self.reliability = reliability
@@ -204,6 +208,16 @@ class Minion {
     }
 }
 
+extension Minion: DirtyDeeds {
+    func cheat() {
+        
+    }
+    
+    func steal() {
+        
+    }
+}
+
 //: __Problem 6__
 //:
 //: This extension from the [Coding Explorer Blog](http://www.codingexplorer.com/swift-extensions/) makes it easier to initialize a UIColor object from RGB values that are integers.
@@ -223,7 +237,13 @@ extension UIColor
         
         self.init(red: newRed, green: newGreen, blue: newBlue, alpha: CGFloat(1.0))
     }
+    
+    static func pistachio() -> UIColor {
+        return UIColor(redValue: 147, greenValue: 197, blueValue: 114)
+    }
 }
+
+var pistachioColor = UIColor.pistachio()
 
 
 

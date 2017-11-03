@@ -5,11 +5,27 @@ protocol DirtyDeeds {
     func steal()
 }
 
-class Minion: DirtyDeeds {
+class Minion: DirtyDeeds, Souschef {
     var name: String
     
     init(name:String) {
         self.name =  name
+    }
+    
+    func cheat() {
+        
+    }
+    
+    func steal() {
+        
+    }
+    
+    func chop(_ s: String) -> String {
+        return s
+    }
+    
+    func rinse(_ s: String) -> String {
+        return s
     }
 }
 

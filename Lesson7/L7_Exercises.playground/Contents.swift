@@ -25,6 +25,7 @@ struct EspressoDrink {
 var macchiato = EspressoDrink(numberOfShots: 2, steamedMilk: .none, foam: true)
 var espressoForGabrielle = macchiato
 espressoForGabrielle.steamedMilk = .splash
+espressoForGabrielle.steamedMilk
 macchiato.steamedMilk
 
 //: __Problem 2__
@@ -32,9 +33,12 @@ macchiato.steamedMilk
 //: __2a.__
 //: Write an enum to represent the five fingers on a human hand.
 //:
+enum Fingers: Int {
+    case Thumb, Pointer, Middle, Ring, Pinky
+}
 //: __2b.__
 //: Associate an Int value with each finger.
-
+print(Fingers.Thumb.rawValue)
 //: __Problem 3__
 //:
 //: Enum, class, or struct?
