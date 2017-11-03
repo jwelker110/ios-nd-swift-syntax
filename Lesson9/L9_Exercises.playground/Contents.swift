@@ -1,5 +1,6 @@
 //: ## Lesson 9 Exercises - Closures
 import UIKit
+import Foundation
 //: __Problems 1&2__
 //:
 //: In the code snippets below find two sorted arrays. For each:
@@ -14,12 +15,15 @@ var surnames = ["Silverman", "Fey", "Whig", "Schumer", "Kaling"]
 let orderedSurnames = surnames.sorted(by: {(name1: String, name2: String) -> Bool in
     return name2 > name1
 })
-
+let reversedSurnames = orderedSurnames.sorted(by: {$0 > $1})
+reversedSurnames
 // 2
 let battingAverages = [0.302, 0.556, 0.280, 0.500, 0.281, 0.285]
 let sortedAverages = battingAverages.sorted(by: {(average1: Double, average2: Double) -> Bool in
     return average2 > average1
 })
+let reversedAverage = sortedAverages.sorted(by: {$0 > $1})
+reversedAverage
 
 //: __Problem 3__
 //:
@@ -32,6 +36,8 @@ let divisibleByThree = numbers.filter({(number: Int) -> Bool in
 //: __3a.__
 //:Filter the following array for the numbers which are divisible by 12.
 let numbersAsStrings = ["685", "1728", "648", "87", "979", "59175432"]
+let divisibleByTwelve = numbersAsStrings.filter({Int($0)! % 12 == 0})
+divisibleByTwelve
 
 //: __3b.__
 //: Rewrite the filtering closure expression to be as concise as possible.
@@ -40,6 +46,8 @@ let numbersAsStrings = ["685", "1728", "648", "87", "979", "59175432"]
 //:
 //: Filtering out particles greater that 20 microns has been shown to reduce exposure to waterborne pathogens. Filter the following array for all of the particles below 20 microns in size. Assign the result to a new array.
 let particleSizesInMicrons = [150, 16, 82, 30, 10, 57]
+let below20 = particleSizesInMicrons.filter({$0 < 20})
+below20
 
 //: __Problem 5__
 //:
@@ -52,13 +60,16 @@ let sizesAsStrings = particleSizesInMicrons.map({ (size: Int) -> String in
 //: Ben just got back from India and he is tallying what he spent on gifts for his customs form.
 //: Use the map() method to transform this array of prices into dollars. Round to the nearest dollar.
 let pricesInRupees = [750, 825, 2000, 725]
+let conversionRateDollars = 0.015
+let dollarsSpent = pricesInRupees.map({round(Double($0) * conversionRateDollars)})
+dollarsSpent
 
 //: __Problem 6__
 //:
 //: Katie has a competition going with her old friends from the track team. Each person tries to match her fastest high school time for the 1600m run + 1 second for every year since graduation.
 //:
 //:Use the map() method to transform the group members' racing times. Using the oldTimes array and the two helper functions provided below, create a new array of String values called goalTimes. Assume it's been 13 years since graduation.
-
+let yearsAgo = 13
 func timeIntervalFromString(_ timeString: String) -> Int {
     var timeArray = timeString.components(separatedBy: ":")
     let minutes = Int(String(timeArray[0]))!
@@ -73,3 +84,19 @@ func timeStringFromInterval(_ timeInterval: Int) -> NSString {
 }
 
 var oldTimes = ["5:18", "5:45", "5:56", "5:25", "5:27"]
+let newTimes = oldTimes.map(){(time: String) -> String in
+    var time = timeIntervalFromString(time)
+    time += yearsAgo
+    return timeStringFromInterval(time) as String
+}
+newTimes
+
+
+
+
+
+
+
+
+
+
